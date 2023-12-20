@@ -52,20 +52,31 @@ describe('api testing ', () => {
 
 
  it('test the delete request', () => {
+
+
+  let  RequestBody = {
+    "ID" : `${randomIsbn}${randomAisle}`
+  }
     
 
     cy.request({
         method : "Delete",
-        url : myBaseURLDelete
+        url : myBaseURLDelete,
+
     }).then((theResponse)=>{
+
+    
         cy.log(theResponse.status)
+        cy.log(theResponse.body)
 
         expect(theResponse.status).to.eq(200)
-        expect(theResponse.body.msg).to.eq("book is successfully deleted ")
+        expect(theResponse.body.msg).to.eq("book is successfully deleted")
+        
         
 
     })
  });
+
 
 
 });
